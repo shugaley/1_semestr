@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int N = 0;
+	scanf("%d", &N);
+	
+	int* a = calloc(N * N + 1, sizeof(int));
+	for (int i = 0; i < (N * N); i++)
+		scanf("%d", &a[i]);
+
+	int** b = calloc(N + 1, sizeof(int*));
+	int j = 0;
+	for (int i = 0; i < (N * N); i++)
+		if (i % N == 0)
+			b[j++] = a + i;
+	
+	for (int j = 0; j < N; j++)
+	{
+		for (int i = 0; i < N; i++) 
+		{
+			printf("%d ", *(b[j] + i));
+		}
+		printf("\n");
+	}
+	return 0;
+}	

@@ -1,5 +1,27 @@
 #include "stack.h"
 
+
+bool StackInit(My_stack* stk);
+bool StackMaxsizeCreate(My_stack* stk);
+bool StackPush(My_stack* stk, Elem_t elem);
+bool StackMaxsizeInc(My_stack* stk);
+Elem_t StackPop(My_stack* stk);
+bool StackPeek(My_stack* stk);
+bool StackMaxsizeDec(My_stack* stk);
+bool StackClear(My_stack* stk);
+bool StackDestroy(My_stack* stk);
+bool StackCheck(const My_stack* stk);
+inline bool StackCheckHashSum(const My_stack* stk);
+void StackDump(My_stack* stk);
+
+
+
+
+
+
+
+
+
 bool StackInit(My_stack* stk, size_t maxsize already_defined(BEGIN_MAX_SIZE))
 {
 

@@ -1,3 +1,6 @@
+#ifndef NIKITASTACK_STACK_H
+#define NIKITASTACK_STACK_H
+
 #ifndef STEK_STACK_H
 #define STEK_STACK_H
 
@@ -25,32 +28,32 @@ const Canary_t RIGHT_CANARY = 53535550088;
 enum Stack_error
 {
     STK_NO_ERROR = 0,
-    STK_NULLPTR = 1,
-    STK_DATA_NULLPTR = 2,
-    STK_OVER_MAXSIZE = 3,
-    STK_SIZE_NEGATIVE = 4,
-    STK_MAXSIZE_NEGATIVE = 5,
-    STK_LEFT_CANARY = 6,
-    STK_RIGHT_CANARY = 7,
-    STK_LEFT_AR_CANARY = 8,
-    STK_RIGHT_AR_CANARY = 9,
-    STK_HASH_SUM_ERR = 10,
+    STK_DATA_NULLPTR = 111001,
+    STK_OVER_MAXSIZE = 111002,
+    STK_SIZE_NEGATIVE = 111003,
+    STK_MAXSIZE_NEGATIVE = 111004,
+    STK_LEFT_CANARY = 111005,
+    STK_RIGHT_CANARY = 111006,
+    STK_LEFT_AR_CANARY = 111007,
+    STK_RIGHT_AR_CANARY = 111008,
+    STK_HASH_SUM_ERR = 111009,
+    STK_ERR_ERR = 111010,
 };
 
 
 struct My_stack
 {
-    Canary_t left_canary;
-    Canary_t* left_ar_canary;
+    Canary_t left_canary = POISON;
+    Canary_t* left_ar_canary = nullptr;
 
-    Elem_t* data;
-    size_t size;
-    size_t maxsize;
-    unsigned int hash_sum;
-    Stack_error stk_err;
+    Elem_t* data = nullptr;
+    size_t size = POISON;
+    size_t maxsize = POISON;
+    unsigned int hash_sum = POISON;
+    Stack_error stk_err = STK_NO_ERROR;
 
-    Canary_t* right_ar_canary;
-    Canary_t right_canary;
+    Canary_t* right_ar_canary = nullptr;
+    Canary_t right_canary = POISON;
 };
 
 
@@ -63,8 +66,9 @@ struct My_stack
 
 //Secure
 
-
+//DEBUG+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #define MURMUR
+//DEBUG+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 #define dump \
 {\
@@ -85,7 +89,7 @@ struct My_stack
     }\
 }
 #else
-#define  assert_My_stack(PointerStk)
+#define  assert_My_stack(PointerStk)  ;
 #endif
 
 
@@ -94,24 +98,23 @@ struct My_stack
 {\
     if((#oper)[0]) == '+')\
     {\
-        (val) = ((val) + (chage));\
+        (val) = ((val) + (change));\
         (val) = ( ( (int)(val)) << 1);\
     }\
     else\
     {\
         (val) =( ( (int)(val)) >> 1);\
         (val) = ((val) - (change));\
+    }\
 }
 
 #else
-#define Hash_Sum(val, oper, change)
+#define Hash_Sum(val, oper, change) ;
 
 #endif
 
 
-
-
-bool StackInit(My_stack* stk);
+bool StackInit(My_stack* stk, size_t maxsize = BEGIN_MAX_SIZE);
 bool StackMaxsizeCreate(My_stack* stk);
 bool StackPush(My_stack* stk, Elem_t elem);
 bool StackMaxsizeInc(My_stack* stk);
@@ -121,5 +124,7 @@ bool StackMaxsizeDec(My_stack* stk);
 bool StackClear(My_stack* stk);
 bool StackDestroy(My_stack* stk);
 bool StackCheck(const My_stack* stk);
-inline bool StackCheckHashSum(const My_stack* stk);
+inline bool StackCheckHashSum(My_stack* stk);
 void StackDump(My_stack* stk);
+
+#endif //NIKITASTACK_STACK_H

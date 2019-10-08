@@ -43,7 +43,7 @@ bool StackPush(My_stack* stk, Elem_t elem)
 
     stk->data[stk->size++] = elem;
 
-    Hash_Sum(stk->hash_sum, +, stk->data[stk->size]);
+ //   Hash_Sum(stk->hash_sum, +, stk->data[stk->size]);
 
     assert_My_stack(stk);
 
@@ -204,7 +204,7 @@ inline bool StackCheckHashSum(My_stack* stk)
 
     unsigned int ControlHashSum = 0;
     for(size_t i_size = stk->size; i_size >= 0; i_size--)
-        Hash_Sum(ControlHashSum, +, stk->data[i_size]);
+//        Hash_Sum(ControlHashSum, +, stk->data[i_size]);
 
     return stk->hash_sum == ControlHashSum;
 

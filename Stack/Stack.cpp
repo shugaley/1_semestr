@@ -1,6 +1,6 @@
 #include "stack.h"
 
-bool StackInit(My_stack* stk, size_t maxsize)
+bool StackInit(My_stack* stk, size_t maxsize already_defined(BEGIN_MAX_SIZE))
 {
 
     assert(stk);
@@ -42,7 +42,7 @@ bool StackPush(My_stack* stk, Elem_t elem)
 
     stk->data[stk->size++] = elem;
 
-    Hash_Sum(stk->hash_sum, +,stk->data[stk->size]);
+    Hash_Sum(stk->hash_sum, +, stk->data[stk->size]);
 
     assert_My_stack(stk);
 
@@ -176,16 +176,18 @@ bool StackDestroy(My_stack* stk)
 bool StackCheck(My_stack* stk)
 {
 
-    CHECK (stk == nullptr,                        STK_NULLPTR         )
-    CHECK (data == nullptr,                       STK_DATA_NULLPTR    )
-    CHECK (stk->size > stk->maxsize,              STK_OVER_MAXSIZE    )
-    CHECK (stk->size < 0,                         STK_SIZE_NEGATIVE   )
-    CHECK (stk->maxsize < 0,                      STK_MAXSIZE_NEGATIVE)
-    CHECK ( stk->left_canary != LEFT_CANARY,      STK_LEFT_CANARY     )
-    CHECK (stk->right_canary != RIGHT_CANARY,     STK_RIGHT_CANARY    )
-    CHECK (*stk->left_ar_canary != LEFT_CANARY,   STK_LEFT_AR_CANARY  )
-    CHECK (*stk->right_ar_canary != RIGHT_CANARY, STK_RIGHT_AR_CANARY  )
-    CHECK (!StackChechHashSum(stk),               STK_HASH_SUM_ERR    )
+    assert(stk);
+
+    CHECK (stk->stk_err != STK_NO_ERROR,           STK_ERR_ERR         )
+    CHECK (stk->data == nullptr,                   STK_DATA_NULLPTR    )
+    CHECK (stk->size > stk->maxsize,               STK_OVER_MAXSIZE    )
+    CHECK (stk->size < 0,                          STK_SIZE_NEGATIVE   )
+    CHECK (stk->maxsize < 0,                       STK_MAXSIZE_NEGATIVE)
+    CHECK (stk->left_canary != LEFT_CANARY,        STK_LEFT_CANARY     )
+    CHECK (stk->right_canary != RIGHT_CANARY,      STK_RIGHT_CANARY    )
+    CHECK (*stk->left_ar_canary != LEFT_CANARY,    STK_LEFT_AR_CANARY  )
+    CHECK (*stk->right_ar_canary != RIGHT_CANARY,  STK_RIGHT_AR_CANARY )
+    CHECK (!StackCheckHashSum(stk),                STK_HASH_SUM_ERR    )
 
     return true;
 
@@ -193,7 +195,8 @@ bool StackCheck(My_stack* stk)
 
 #undef CHECK
 
-inline bool StackCheckHashSum(const My_stack* stk)
+
+inline bool StackCheckHashSum(My_stack* stk)
 {
 
     assert(stk);
@@ -256,5 +259,3 @@ void StackDump(My_stack* stk)
             fprintf(Dump, "nullptr data[%ld]", i_size);
     }
 }
-
-

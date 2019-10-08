@@ -96,7 +96,7 @@ struct My_stack
 #ifdef MURMUR
 #define Hash_Sum(val, oper, change)\
 {\
-    if((#oper)[0]) == '+')\
+    if(((#oper)[0]) == '+')\
     {\
         (val) = ((val) + (change));\
         (val) = ( ( (int)(val)) << 1);\

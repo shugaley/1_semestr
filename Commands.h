@@ -1,0 +1,24 @@
+CMD(PUSH, 65);
+CMD(POP,  66);
+CMD(ADD,  67);
+CMD(SUB,  68);
+CMD(MUL,  69);
+CMD(DIV,  70);
+CMD(END,  90);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CMDR(PUSH, 97);
+CMDR(POP, 98);

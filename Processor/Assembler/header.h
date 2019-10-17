@@ -1,15 +1,30 @@
-#ifndef SOFT_PROCCESOR_HEADER_H
-#define SOFT_PROCCESOR_HEADER_H
-
-#endif //SOFT_PROCCESOR_HEADER_H
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <assert.h>
+#include <cstdio>
+#include <cstdlib>
+#include <string>
+#include <cctype>
+#include <cassert>
 #include <sys/stat.h>
 
-const char* TEXT_INPUT = "Home/C/ded/Soft-processor/input_file.txt";
-const char* TEXT_OUTPUT = "Home/C/ded/Soft-processor/output_file.txt";
+
+int assembler(struct LINE* lines_text, size_t nlines, char* bytecode);
+
+char WhichCommand(char* str_command);
+char WhichCommandReg(char* str_command);
+
+bool DeleteComm(struct LINE* lines_text, int nlines);
+
+int FindParams(struct LINE lines_text, char* param);
+
+struct LINE* create_all(size_t* nlines);
+
+char* create_ar_text(FILE* pnt_input, size_t* size);
+struct LINE* create_struct_lines(char* text, size_t nlines, size_t size);
+
+size_t count_size();
+size_t count_symbol(char* text, size_t size, char symbol);
+
+struct LINE
+{
+    int length;
+    char* ptrline;
+};

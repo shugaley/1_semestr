@@ -1,36 +1,18 @@
-#include "Header.h"
+#include "header_ass.h"
 
-struct LINE* create_all(size_t* nlines);
+const char* TEXT_INPUT = "/home/shugaley/proga/projects/1_sem/processor/assembler/Input_File";
 
-char* create_ar_text(FILE* pnt_input, size_t* size);
-struct LINE* create_struct_lines(char* text, size_t nlines, size_t size);
-
-size_t count_size();
-size_t count_symbol(char* text, size_t size, char symbol);
-
-struct LINE
+struct LINE* create_all(FILE* ptr_input)
 {
-    int length;
-    char* ptrline;
-};
-
-
-
-
-struct LINE* create_all(size_t* nlines)
-{
-
-    FILE* ptr_input = fopen(TEXT_INPUT, "r");
+    assert(ptr_input);
 
     size_t size = count_size();
 
     char* text = create_ar_text(ptr_input, &size);
 
-    fclose(ptr_input);
+    size_t nlines = count_symbol(text, size, '\n');
 
-    *nlines = count_symbol(text, size, '\n');
-
-    struct LINE* lines = create_struct_lines(text, *nlines, size);
+    struct LINE* lines = create_struct_lines(text, nlines, size);
 
     return lines;
 }
@@ -39,7 +21,7 @@ struct LINE* create_all(size_t* nlines)
 char* create_ar_text(FILE* ptr_input, size_t* size)
 {
 
-    assert(ptr_input != 0);
+    assert(ptr_input);
 
     char* text = (char*)calloc(*size + 1, sizeof(text[0]));
     *size = fread(text, sizeof(text[0]), *size, ptr_input) + 1;
@@ -53,19 +35,19 @@ char* create_ar_text(FILE* ptr_input, size_t* size)
 struct LINE* create_struct_lines(char* text, size_t nlines, size_t size)
 {
 
-    assert(text != NULL);
+    assert(text);
 
     if (nlines == 0)
         nlines = count_symbol(text, size, '\n');
 
 
-    struct LINE* lines = (struct LINE*)calloc(nlines + 1, sizeof(lines[0]));
+    LINE* lines = (struct LINE*)calloc(nlines + 1, sizeof(lines[0]));
 
-    int line = 0, i = 0;
+    size_t line = 0, i = 0;
 
     lines[line].ptrline = &text[i];
 
-    for (line = 1; line < nlines; line++)								   //line - ñ÷åò÷èê ñòðîê
+    for (line = 1; line < nlines; line++)								   //line - Г±Г·ГҐГІГ·ГЁГЄ Г±ГІГ°Г®ГЄ
     {
 
         while (text[i] && text[i] != '\n')
@@ -101,17 +83,17 @@ size_t count_size()
 
 
 
-size_t count_symbol(char* text, size_t size, char symbol)
+size_t count_symbol(const char* text, size_t size, char symbol)
 {
 
-    assert(text != NULL);
+    assert(text);
 
     int nlines = 0;
 
-    int i = 0;
-    for (i; i < size; i++)									//i - счетчик символов
-        if (!text[i] || text[i] == symbol)
+    size_t i_sym = 0;
+    for (; i_sym < size; i_sym++)									//i - СЃС‡РµС‚С‡РёРє СЃРёРјРІРѕР»РѕРІ
+        if (!text[i_sym] || text[i_sym] == symbol)
             nlines++;
 
-    return (text[i - 1] != symbol) ? nlines : ++nlines;
+    return (text[i_sym - 1] != symbol) ? nlines : ++nlines;
 }

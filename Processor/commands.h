@@ -1,12 +1,104 @@
 #ifdef NON_REG_MOD
 
-CMD(PUSH, 65)
-CMD(POP,  66)
-CMD(ADD,  67)
-CMD(SUB,  68)
-CMD(MUL,  69)
-CMD(DIV,  70)
-CMD(END,  90)
+DEF_CMD(PUSH, 65,
+{
+    PC('c');
+    DPUSH ((int)bytecode[pc]);
+    PC('i');
+});
+
+
+
+DEF_CMD(POP,  66,
+{
+    DPOP;
+    PC('c');
+});
+
+
+
+DEF_CMD(ADD,  43,
+{
+    DPUSH (DPOP + DPOP);
+    PC('c');
+});
+
+
+
+DEF_CMD(SUB,  45,
+{
+    DPUSH ( -DPOP + DPOP);
+    PC('c');
+});
+
+
+
+DEF_CMD(MUL,  42,
+{
+    DPUSH (DPOP * DPOP);
+    PC('c');
+});
+
+
+
+DEF_CMD(DIV,  47,
+{
+    DPUSH ((1 / DPOP) * DPOP);
+    PC('c');
+});
+
+
+
+DEF_CMD(JMP, 124
+{
+    MAKE_JMP()
+});
+
+
+
+DEF_CMD(JA, 62,
+{
+
+});
+
+
+
+DEF_CMD(JB, 60
+{
+
+});
+
+
+
+DEF_CMD(JAE, 125
+{
+
+});
+
+
+
+DEF_CMD(JBE, 123
+{
+
+});
+
+
+
+DEF_CMD(JE, 61
+{
+
+});
+
+
+
+DEF_CMD(JNE, 33
+{
+
+});
+
+
+
+DEF_CMD(END,  90, ;);
 
 #undef NON_REG_MOD
 #endif
@@ -14,14 +106,22 @@ CMD(END,  90)
 
 
 
-
-
-
-
 #ifdef REG_MOD
 
-CMDR(PUSH, 97)
-CMDR(POP, 98)
+DEF_CMDR(PUSH, 97,
+{
+    PC('c');
+    WHICH_REG(pc) = DPOP;
+    PC('c');
+});
+
+DEF_CMDR(POP, 98,
+{
+    PC('c');
+    DPUSH (WHICH_REG(pc));
+    PC('c');
+});
+
 
 #undef REG_MOD
 #endif

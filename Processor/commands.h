@@ -49,7 +49,7 @@ DEF_CMD(DIV,  47,
 
 
 
-DEF_CMD(SQRT, 37
+DEF_CMD(SQRT, 37,
 {
     DPUSH (sqrt(DPOP));
     PC('c');
@@ -57,51 +57,51 @@ DEF_CMD(SQRT, 37
 
 
 
-DEF_CMD(JMP, 124
+DEF_CMD(JMP, 124,
 {
-    MAKE_JMP()
+    ;
 });
 
 
 
 DEF_CMD(JA, 62,
 {
-
+    ;
 });
 
 
 
-DEF_CMD(JB, 60
+DEF_CMD(JB, 60,
 {
-
+    ;
 });
 
 
 
-DEF_CMD(JAE, 125
+DEF_CMD(JAE, 125,
 {
-
+    ;
 });
 
 
 
-DEF_CMD(JBE, 123
+DEF_CMD(JBE, 123,
 {
-
+    ;
 });
 
 
 
-DEF_CMD(JE, 61
+DEF_CMD(JE, 61,
 {
-
+    ;
 });
 
 
 
-DEF_CMD(JNE, 33
+DEF_CMD(JNE, 33,
 {
-
+    ;
 });
 
 

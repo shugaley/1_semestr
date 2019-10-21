@@ -49,6 +49,14 @@ DEF_CMD(DIV,  47,
 
 
 
+DEF_CMD(SQRT, 37
+{
+    DPUSH (sqrt(DPOP));
+    PC('c');
+});
+
+
+
 DEF_CMD(JMP, 124
 {
     MAKE_JMP()

@@ -1,52 +1,56 @@
-#define _CRT_SECURE_NO_WARNINGS
+#include "header_ass.h"
 
-#include "Reader.cpp"
-
-int assembler(struct LINE* lines_text, size_t nlines, char* bytecode);
-
-char WhichCommand(char* str_command);
-char WhichCommandReg(char* str_command);
-
-bool DeleteComm(struct LINE* lines_text, int nlines);
-
-int FindParams(struct LINE lines_text, char* param);
-
-
-
-
-int assembler(struct LINE* lines_text, size_t nlines, char* bytecode)
+enum FindParams
 {
+    NO_PARAMS = 0,
+    NUMBER,
+    REGISTER,
+    RAM,
+};
+
+const int MAX_COMMAND_SIZE = 50;
+
+
+int assembler(struct LINE* lines_text, char* bytecode) {
     assert(bytecode);
 
     int pc = 0;
-    char* str_command = (char*)calloc(4, sizeof(str_command[0]));
+    char *str_command = (char*) calloc(MAX_COMMAND_SIZE, sizeof(str_command[0]));
 
-    for(size_t i_line = 0; bytecode[pc] != 90; i_line++)
+    for (size_t i_line = 0; bytecode[pc - 1] != 90; i_line++)
     {
-        sscanf(lines_text[i_line].ptrline, "%s", str_command);
+        char *str = lines_text[i_line].ptrline;
 
-        char* param = (char*)calloc(lines_text[i_line].length, sizeof(param[0]));
+        DeleteComm(str);
 
-        if (FindParams(lines_text[i_line], param) < 0)
-            bytecode[pc++] = WhichCommandReg(str_command);
+        sscanf(str, "%s", str_command);
 
-        else
+        int value = 0;
+        char* regis = (char*) (calloc)(MAX_COMMAND_SIZE, sizeof(regis[0]));
+        switch (FindParams(str))
         {
-            bytecode[pc++] = WhichCommand(str_command);
+            case NO_PARAMS:
+                bytecode[pc++] = WhichCommand(str_command);
+                sscanf(str, "%*s %s", regis);
+                bytecode[pc++] = regis[0];
+                break;
 
-            if (FindParams(lines_text[i_line], param) > 0)
-            {
-                size_t i_sym = param - lines_text[i_line].ptrline;
+            case NUMBER:
+                bytecode[pc++] = WhichCommand(str_command);
+                sscanf(str, "%*s %d", &value)
+                *(int*)(bytecode + pc) = value;
+                pc += sizeof(value);
+                break;
 
-                int value = 0;
-                sscanf(param, "%d", &value);
-                bytecode[pc++] = (char)value;
-            }
+            case REGISTER:
+                bytecode[pc++] = WhichCommandReg(str_command);
+                break;
+
+            default:
+                perror("Assembler error");
         }
 
-        free(param);
     }
-
     free(str_command);
 
     return pc;
@@ -57,91 +61,71 @@ char WhichCommand(char* str_command)
 {
     assert(str_command);
 
-    #define CMD(name, num) \
-    {\
-           if(!strcmp(str_command, #name))\
-                return num;\
-    }
+    #define DEF_CMD(name, num, code)\
+           if(strcasecmp(str_command, #name) == 0)\
+                return num;
 
-    #include "Commands.h"
+    #define NON_REG_MOD
 
-    #undef CMD(name, num)
+    #include "commands.h"
+
+    #undef DEF_CMD
 
     return 0;
 }
+
 
 
 char WhichCommandReg(char* str_command)
 {
     assert(str_command);
 
-    #define CMDR(name, num) \
-        if(!strcmp(str_command, #name))\
+#define DEF_CMDR(name, num, code) \
+        if(strcasecmp(str_command, #name) == 0)\
             return num;
 
-    #include "Commands.h"
+#define REG_MOD
+#include "commands.h"
 
-    #undef CMDR(name, num)
+#undef DEF_CMDR
 
-        return 0;
+    return 0;
 }
 
 
 
 
-bool DeleteComm(struct LINE* lines_text, int nlines)
+bool DeleteComm(char* str)
 {
-    assert(lines_text);
+    assert(str);
 
-    char* temp = nullptr;
+    char* comment = strchr (str, ';');
+    if (comment)
+        *comment = '\0';
 
-    for(size_t i_line = 0; i_line < nlines; i_line++)
-    {
-        temp = strchr(lines_text[i_line].ptrline, ';');
-
-        for(size_t i_sym = (lines_text[i_line].ptrline - temp); i_sym < lines_text[i_line].length; i_sym++)
-            lines_text[i_line].ptrline[i_sym] = '\0';
-    }
-
-    assert(lines_text);
+    assert(str);
 
     return true;
 }
 
 
-
-//0 - no patams
-// >0 - numbers
-// <0 - letter
-
-int FindParams(struct LINE lines_text, char* param)
+int FindParams(char* str)
 {
+    assert(str);
 
-    assert(param);
+    int value = 0;
+    if(sscanf(str, "%*s %d", &value) == 1)
+        return NUMBER;
 
-    for(size_t i_sym = 0; i_sym < lines_text.length; i_sym++)
-    {
+    char* param = (char*)calloc(MAX_COMMAND_SIZE, sizeof(param[0]));
+    sscanf(str, "%*s %s", param);
 
-        while(lines_text.ptrline[i_sym] == ' ' && isalpha(lines_text.ptrline[i_sym - 1]))
-            i_sym++;
+    if(isalpha(*param))
+        return REGISTER;
 
-        while(isalnum(lines_text.ptrline[i_sym]))
-            i_sym++;
+    free(param);
 
-        if(isdigit(lines_text.ptrline[i_sym]))
-        {
-            param = &lines_text.ptrline[i_sym];
-            return 1;
-        }
+    assert(str);
 
-        if(isalpha(lines_text.ptrline[i_sym]))
-        {
-            param = &lines_text.ptrline[i_sym];
-            return -1;
-        }
-
-        return 0;
-
-    }
-
+    return NO_PARAMS;
 }

@@ -1,5 +1,6 @@
-#include "stack.h"
+#include "stack_header.h"
 
+#define $(what)   std::cerr << __PRETTY_FUNCTION__ << " (" << __LINE__ << "): " << #what << " = " << what << std::endl
 
 bool StackInit(My_stack* stk, size_t maxsize already_defined(BEGIN_MAX_SIZE))
 {
@@ -27,6 +28,8 @@ bool StackInit(My_stack* stk, size_t maxsize already_defined(BEGIN_MAX_SIZE))
         StackMaxsizeCreate(stk);  }
     else
         stk->maxsize = 0;
+
+    return true;
 }
 
 
@@ -43,9 +46,11 @@ bool StackPush(My_stack* stk, Elem_t elem)
 
     stk->data[stk->size++] = elem;
 
- //   Hash_Sum(stk->hash_sum, +, stk->data[stk->size]);
+    //Hash_Sum(stk->hash_sum, +, stk->data[stk->size]);
 
     assert_My_stack(stk);
+
+    return true;
 
 }
 
@@ -58,14 +63,9 @@ bool StackMaxsizeCreate(My_stack* stk)
     if(stk->size == 0)
         stk->size = BEGIN_MAX_SIZE;
 
-    stk->data = (Elem_t*)calloc(stk->maxsize * sizeof(stk->data[0]) + 2 * sizeof(Canary_t), sizeof(stk->data[0]));
+    stk->data = (Elem_t*) calloc(stk->maxsize * sizeof(stk->data[0]) + 2 * sizeof(Canary_t), sizeof(stk->data[0]));
 
-     stk->left_ar_canary  = (Canary_t*)stk->data;
-    *stk->left_ar_canary  = LEFT_CANARY;
-     stk->right_ar_canary = (Canary_t*)(stk->data + 2) + (Elem_t)stk->maxsize;
-    *stk->right_ar_canary = RIGHT_CANARY;
-
-    stk->data++;
+    StackNewDataCanary(stk);
 
     assert_My_stack(stk);
 
@@ -75,21 +75,39 @@ bool StackMaxsizeCreate(My_stack* stk)
 
 bool StackMaxsizeInc(My_stack* stk)
 {
-
     assert_My_stack(stk);
 
     if(stk->maxsize == 0)
         StackMaxsizeCreate(stk);
 
     stk->maxsize *= 2;
-    stk->data = (Elem_t *)realloc(stk->data, stk->maxsize + 2);
 
-     stk->right_ar_canary = (Canary_t*)(stk->left_ar_canary + stk->maxsize + 2);
-    *stk->right_ar_canary = RIGHT_CANARY;
+    stk->data = (Elem_t*)((Canary_t*)(stk->data) - 1);
+    stk->data = (Elem_t*) realloc(stk->data, stk->maxsize * sizeof(stk->data[0]) + 2 * sizeof(Canary_t));
+
+    StackNewDataCanary(stk);
 
     assert_My_stack(stk);
+
+    return true;
 }
 
+
+bool StackNewDataCanary(My_stack* stk)
+{
+    assert(stk);
+
+     stk->left_ar_canary  = (Canary_t*)stk->data;
+    *stk->left_ar_canary  = LEFT_CANARY;
+     stk->right_ar_canary = (Canary_t*)((Elem_t*)((Canary_t*)stk->data + 1) + stk->maxsize);
+    *stk->right_ar_canary = RIGHT_CANARY;
+
+    stk->data = (Elem_t*)((Canary_t*)stk->data + 1) ;
+
+    assert_My_stack(stk);
+
+    return true;
+}
 
 
 Elem_t StackPop(My_stack* stk)
@@ -105,7 +123,7 @@ Elem_t StackPop(My_stack* stk)
 
     Elem_t elem = stk->data[--stk->size];
 
-    if(stk->maxsize <= (3 * stk->size))
+    if(stk->maxsize >= (3 * stk->size))
         StackMaxsizeDec(stk);
 
     assert_My_stack(stk);
@@ -135,9 +153,14 @@ bool StackMaxsizeDec(My_stack* stk)
     assert_My_stack(stk);
 
     stk->maxsize /= 2;
-    stk->data = (Elem_t*)realloc(stk->data, stk->maxsize);
+    stk->data = (Elem_t*)((Canary_t*)(stk->data) - 1);
+    stk->data = (Elem_t*)realloc(stk->data, stk->maxsize * sizeof(stk->data[0]) + 2 * sizeof(Canary_t));
+
+    StackNewDataCanary(stk);
 
     assert_My_stack(stk);
+
+    return true;
 }
 
 
@@ -146,8 +169,10 @@ bool StackClear(My_stack* stk)
 
     assert_My_stack(stk);
 
-    while(stk->size >= 0)
-        stk->data[stk->size--] = POISON;
+    while(stk->size > 0)
+        stk->data[--stk->size] = POISON;
+
+    return true;
 
 }
 
@@ -159,14 +184,18 @@ bool StackDestroy(My_stack* stk)
 
     StackClear(stk);
 
-    free(stk->data);
+     stk->maxsize = 0;
+     stk->left_canary     = POISON;
+     stk->right_canary    = POISON;
+    *stk->left_ar_canary  = POISON;
+    *stk->right_ar_canary = POISON;
+     stk->left_ar_canary  = nullptr;
+     stk->right_ar_canary = nullptr;
 
-    stk->maxsize = 0;
-    stk->left_canary = POISON;
-    stk->right_canary = POISON;
+     stk->data = (Elem_t*)((Canary_t*)(stk->data) - 1);
+     free(stk->data);
 
-
-//    memset (stk, 0xFF, sizeof (*stk));
+    return true;
 }
 
 #define CHECK(what, code) \
@@ -206,7 +235,9 @@ inline bool StackCheckHashSum(My_stack* stk)
     for(size_t i_size = stk->size; i_size >= 0; i_size--)
 //        Hash_Sum(ControlHashSum, +, stk->data[i_size]);
 
-    return stk->hash_sum == ControlHashSum;
+        return stk->hash_sum == ControlHashSum;
+
+    return true;
 
 }
 
@@ -214,7 +245,7 @@ inline bool StackCheckHashSum(My_stack* stk)
 void StackDump(My_stack* stk)
 {
 
-    FILE* Dump = fopen("DUMP.txt", "w");  // a
+    FILE* Dump = fopen("DUMP.txt", "a");
 
     assert(Dump);
 

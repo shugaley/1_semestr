@@ -1,16 +1,10 @@
-#ifndef NIKITASTACK_STACK_H
-#define NIKITASTACK_STACK_H
-
-#ifndef STEK_STACK_H
-#define STEK_STACK_H
-
-#endif //STEK_STACK_H
-
-
+#ifndef STACK_STACK_HEADER_H
+#define STACK_STACK_HEADER_H
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <iostream>
 
 typedef int Elem_t;
 typedef long long Canary_t;
@@ -21,9 +15,6 @@ const Elem_t POISON = -1488228;
 
 const Canary_t LEFT_CANARY = 88005553535;
 const Canary_t RIGHT_CANARY = 53535550088;
-
-//const Canary_t* AR_LEFT_CANARY = 0xBEDAB0DA;
-//const Canary_t* AR_RIGHT_CANARY = 0xAD0BADEB;
 
 enum Stack_error
 {
@@ -47,6 +38,7 @@ struct My_stack
     Canary_t* left_ar_canary = nullptr;
 
     Elem_t* data = nullptr;
+
     size_t size = POISON;
     size_t maxsize = POISON;
     unsigned int hash_sum = POISON;
@@ -67,7 +59,7 @@ struct My_stack
 //Secure
 
 //DEBUG+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#define MURMUR
+#define MURMUR1
 //DEBUG+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 #define dump \
@@ -118,13 +110,15 @@ bool StackInit(My_stack* stk, size_t maxsize = BEGIN_MAX_SIZE);
 bool StackMaxsizeCreate(My_stack* stk);
 bool StackPush(My_stack* stk, Elem_t elem);
 bool StackMaxsizeInc(My_stack* stk);
+bool StackNewDataCanary(My_stack* stk);
 Elem_t StackPop(My_stack* stk);
 bool StackPeek(My_stack* stk);
 bool StackMaxsizeDec(My_stack* stk);
 bool StackClear(My_stack* stk);
 bool StackDestroy(My_stack* stk);
-bool StackCheck(const My_stack* stk);
+bool StackCheck(My_stack* stk);
 inline bool StackCheckHashSum(My_stack* stk);
 void StackDump(My_stack* stk);
 
-#endif //NIKITASTACK_STACK_H
+
+#endif //STACK_STACK_HEADER_H

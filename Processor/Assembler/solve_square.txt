@@ -1,0 +1,85 @@
+;-666666 no roots
+;999999 infinity roots
+in
+push ax
+in
+push bx
+in
+push cx
+call solve_square
+exit:
+end
+solve_square:   ; solve square equation
+pop ax
+push 0
+je a_zero
+jmp dickr
+pop dx
+push 0
+ja no_roots
+jmp first_root
+jmp second_root
+ret
+dickr:         ; count dickriminant
+pop bx
+pop bx
+mul
+pop ax
+pop cx
+mul
+push 4
+mul
+sub
+push dx
+ret
+first_root:    ; first_root
+push 0
+pop bx
+sub
+push 0
+pop dx
+add
+push 2
+pop ax
+sub
+div
+out
+ret
+second_root:    ; second_root
+push 0
+pop bx
+sub
+pop dx
+add
+push 2
+pop ax
+sub
+div
+out
+ret
+a_zero:        ; if a == 0
+pop bx
+push 0
+je a_b_zero
+push 0
+push cx
+sub
+push bx
+div
+out
+jmp exit
+a_b_zero:      ; if a == 0 && b == 0
+pop cx
+push 0 
+je a_b_c zero
+push -666666
+out
+jmp exit
+a_b_c zero:    ; if a == 0 && b == 0 && c == 0
+push 999999
+out
+jmp exit
+no_roots:      ; if no roots
+push -666666
+out
+jmp exit

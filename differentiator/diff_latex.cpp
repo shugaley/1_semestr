@@ -1,5 +1,3 @@
-#include "diff_header.h"
-
 void Latex(tree* tree_name)
 {
     assert(tree_name);

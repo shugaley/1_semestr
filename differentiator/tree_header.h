@@ -9,9 +9,10 @@
 #include <sys/stat.h>
 #include <cmath>
 #include <cstdarg>
+#include <ctime>
 
 //const data_t DATA_POISON = nullptr;
-const size_t POISON = -666;
+const int POISON = -666;
 const size_t MAXSIZE_DATA = 100;
 
 enum error_tree
@@ -30,7 +31,7 @@ struct tree_data
 {
     int mode   = POISON ;
     int number = POISON ;
-    char* var  = nullptr;
+    char  var  = '\0'   ;
     char  oper = '\0'   ;
     char* com  = nullptr;
 };
@@ -75,6 +76,11 @@ void Print_InorderTree (tree_elem* pos, FILE* tree_inorder );
 void Akinator_Dot (tree* tree_name);
 void Create_Tree_Dot (tree_elem* pos, FILE* file_dot);
 
+
+//Graphwiz-------
+void print_mode (tree_elem* pos, FILE* dot_out);
+void create_tree(tree_elem* pos, FILE* dot_out);
+void tree_dot   (tree_elem* nameTree);
 
 #define DED
 

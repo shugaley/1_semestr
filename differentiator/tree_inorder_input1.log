@@ -1,0 +1,20 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdftex 2019.11.18)  27 NOV 2019 15:23
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**/home/shugaley/proga/projects/1_sem/differentiator/tree_inorder_input1
+(/home/shugaley/proga/projects/1_sem/differentiator/tree_inorder_input1
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   ^
+l.1 tan(arctan(exp(6*x^
+                       5+8*x+1)-8*exp(1)))^2
+? exit
+No pages of output.
+PDF statistics:
+ 0 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

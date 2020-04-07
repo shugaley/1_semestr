@@ -1,0 +1,3 @@
+/home/shugaley/proga/projects/1_sem/differentiator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/shugaley/proga/projects/1_sem/differentiator/cmake-build-debug/CMakeFiles/differentiator.dir
+/home/shugaley/proga/projects/1_sem/differentiator/cmake-build-debug/CMakeFiles/edit_cache.dir

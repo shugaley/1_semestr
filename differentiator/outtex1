@@ -1,0 +1,11 @@
+\documentclass{article}
+
+\title{formula}
+\author{Dolboeb}
+
+\begin{document}
+\maketitle
+
+$\cos(x+7)+3-2$
+
+\end{document}

@@ -1,0 +1,3 @@
+/home/shugaley/proga/projects/1_sem/language/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/shugaley/proga/projects/1_sem/language/cmake-build-debug/CMakeFiles/language.dir
+/home/shugaley/proga/projects/1_sem/language/cmake-build-debug/CMakeFiles/edit_cache.dir

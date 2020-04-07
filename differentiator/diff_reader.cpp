@@ -25,4 +25,5 @@ size_t count_size()
 
     size_t size = struct_text.st_size;
 
-   
+    return size;
+}

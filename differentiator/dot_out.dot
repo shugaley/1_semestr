@@ -1,0 +1,29 @@
+digraph {
+	node[color = "#000000", fontsize = 20];
+	edge[color = "#000000", fontsize = 20];
+		hey0[label = "+", shape = "ellipse", color="#FFD700", style="filled", fillcolor = "#F0E68C"];
+		hey0->hey1;
+		hey1[label = "-", shape = "ellipse", color="#FFD700", style="filled", fillcolor = "#F0E68C"];
+		hey1->hey2;
+		hey2[label = "+", shape = "ellipse", color="#FFD700", style="filled", fillcolor = "#F0E68C"];
+		hey2->hey3;
+		hey3[label = "-", shape = "ellipse", color="#FFD700", style="filled", fillcolor = "#F0E68C"];
+		hey3->hey4;
+		hey4[label = "+", shape = "ellipse", color="#FFD700", style="filled", fillcolor = "#F0E68C"];
+		hey4->hey5;
+		hey5[label = "-", shape = "ellipse", color="#FFD700", style="filled", fillcolor = "#F0E68C"];
+		hey5->hey6;
+		hey6[label = "22", shape = "ellipse", color="#8B0000", style="filled", fillcolor = "#FFA07A"];
+		hey5->hey7;
+		hey7[label = "3", shape = "ellipse", color="#8B0000", style="filled", fillcolor = "#FFA07A"];
+		hey4->hey8;
+		hey8[label = "5", shape = "ellipse", color="#8B0000", style="filled", fillcolor = "#FFA07A"];
+		hey3->hey9;
+		hey9[label = "6", shape = "ellipse", color="#8B0000", style="filled", fillcolor = "#FFA07A"];
+		hey2->hey10;
+		hey10[label = "6", shape = "ellipse", color="#8B0000", style="filled", fillcolor = "#FFA07A"];
+		hey1->hey11;
+		hey11[label = "8", shape = "ellipse", color="#8B0000", style="filled", fillcolor = "#FFA07A"];
+		hey0->hey12;
+		hey12[label = "10", shape = "ellipse", color="#8B0000", style="filled", fillcolor = "#FFA07A"];
+}

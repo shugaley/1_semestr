@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="differentiator" targetName="differentiator" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7e9e17d8-e375-4d63-9212-2a6f9a99b83b" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1TkJgTGCaRV8rtABIDEkCAIvB2n" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../calculator" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="differentiator" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="differentiator" TARGET_NAME="differentiator" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="differentiator" RUN_TARGET_NAME="differentiator">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7e9e17d8-e375-4d63-9212-2a6f9a99b83b" name="Default Changelist" comment="" />
+      <created>1573998270553</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1573998270553</updated>
+      <workItem from="1573998271847" duration="5861000" />
+      <workItem from="1574018071941" duration="13210000" />
+      <workItem from="1574099279504" duration="20154000" />
+      <workItem from="1574184235026" duration="80018000" />
+      <workItem from="1574536146842" duration="1438000" />
+      <workItem from="1574537797049" duration="1624000" />
+      <workItem from="1574541416045" duration="3166000" />
+      <workItem from="1574714314626" duration="726000" />
+      <workItem from="1574851309007" duration="8703000" />
+      <workItem from="1574867198505" duration="8524000" />
+      <workItem from="1575195745855" duration="1198000" />
+      <workItem from="1575453319960" duration="8277000" />
+      <workItem from="1575467193213" duration="18373000" />
+      <workItem from="1576367341144" duration="599000" />
+      <workItem from="1576402232216" duration="599000" />
+      <workItem from="1576438293925" duration="599000" />
+      <workItem from="1576445377619" duration="1216000" />
+      <workItem from="1576535829297" duration="599000" />
+      <workItem from="1576593195817" duration="1641000" />
+      <workItem from="1576690493281" duration="1200000" />
+      <workItem from="1576761635260" duration="599000" />
+      <workItem from="1576841059515" duration="558000" />
+      <workItem from="1583093141597" duration="3829000" />
+      <workItem from="1584317321541" duration="820000" />
+      <workItem from="1584395239581" duration="1028000" />
+      <workItem from="1584988460641" duration="602000" />
+      <workItem from="1585073067235" duration="6000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/equation_creator_rec.cpp</url>
+          <line>21</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

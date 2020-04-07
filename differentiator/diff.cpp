@@ -1,178 +1,160 @@
 #include "diff_header.h"
 
-tree_elem* Create_TreeEquation(tree* tree_eq, FILE* inp_diff)
-{
-    assert(tree_eq  );
-    assert(inp_diff );
+extern FILE* outtex;
 
-    char* buffer = create_ar_text(inp_diff);
-
-    assert(buffer);
-
-    size_t i_sym = 0;
-    tree_elem* pos = nullptr;
-    Create_TreeEquationElem(tree_eq, buffer, &i_sym, pos);
-
-    free(buffer);
-
-    assert     (tree_eq);
-    assert_tree(tree_eq);
-    assert     (inp_diff );
-}
-
-
-tree_elem* Create_TreeEquationElem(tree* tree_eq, char* buffer, size_t* i_sym, tree_elem* pos)
+tree Differentiate(tree* tree_eq)
 {
     assert(tree_eq);
-    assert(buffer   );
 
-    if(*i_sym == 0)
-        pos =  Create_TreeEquationHead(tree_eq, buffer, i_sym);
+    tree tree_diff = {};
+    tree_diff.head = Create_TreeDiffElem(tree_eq->head);
 
-    *i_sym = Skip_Space(buffer, *i_sym);
+    assert     (tree_eq);
+//  assert_tree(tree_eq);
 
-    if(buffer[*i_sym] == '{')
+    return tree_diff;
+}
+
+
+
+tree_elem* Create_TreeDiffElem(tree_elem* pos)
+{
+    assert(pos);
+
+    int num_com = 0;
+    tree_elem* pos_temp = nullptr;
+    switch(pos->data.mode)
     {
-        (*i_sym)++;
-         *i_sym = Skip_Space(buffer, *i_sym);
-        char* string = Create_String(buffer, i_sym);
+        case MODE_NUMBER  : return ADD(NUM);
 
-        if      (!pos->left )
-        {
-            pos->left  = Add_TreeElem(tree_eq, string, 'L', pos);
-            pos = pos->left;
-            Create_TreeEquationElem(tree_eq, buffer, i_sym, pos);
-        }
+        case MODE_VAR     : return ADD(VAR);
 
-        else if (!pos->right)
-        {
-            pos->right = Add_TreeElem(tree_eq, string, 'R', pos);
-            pos = pos->right;
-            Create_TreeEquationElem(tree_eq, buffer, i_sym, pos);
-        }
+        case MODE_OPERATOR:
+
+            switch(pos->data.oper)
+            {
+                case '+' : return PLUS(dL, dR);
+
+                case '-' : return SUB (dL, dR);
+
+                case '*' : return PLUS( MUL(dL, cR), MUL(cL, dR) );
+
+                case '/' : return DIV (SUB (MUL(dL, cR), MUL(cL, dR)),  MUL(cR, cR) );
+
+                case '^' : return MUL (cR, POW (cL, SUB(cR, ADD_NUM(1))) );
+
+                default  : printf("Error operator %c", pos->data.oper); abort();
+            }
+
+        case MODE_COMMAND :
+
+            num_com = Which_com(pos->data.com);
+
+            switch(num_com)
+            {
+                #define DEF_COM(com, num, code) {case num: {code}; break;}
+
+                #include "commands.h"
+
+                #undef DEF_COM
+
+                default: printf ("Error command %s", pos->data.com); abort();
+            }
+
+        default: printf ("Error mode %d", pos->data.mode); abort();
     }
 
-    if(buffer[*i_sym] == '}')
+}
+
+
+
+tree_elem* Add_TreeDiffElem(tree_data new_data, tree_elem* pos_left, tree_elem* pos_right)
+{
+    tree_elem* new_elem = (tree_elem*)calloc(1, sizeof(new_elem[0]));
+
+    new_elem->data = new_data;
+
+    new_elem->right = pos_right;
+    new_elem->left  = pos_left;
+
+    if(pos_right)
+        pos_right->parent = new_elem;
+    if(pos_left)
+        pos_left->parent = new_elem;
+
+    return new_elem;
+}
+
+
+
+tree_data Create_TreeDiffNewData(int mode, int num_value, char* str_value)
+{
+    tree_data new_data = {};
+
+    switch(mode)
     {
-        (*i_sym)++;
-         *i_sym = Skip_Space(buffer, *i_sym);
-        pos = pos->parent;
-        Create_TreeEquationElem(tree_eq, buffer, i_sym, pos);
+        case MODE_NUMBER   :
+            new_data.mode   = MODE_NUMBER;
+            new_data.number = num_value;
+            break;
+
+        case MODE_VAR      :
+            new_data.mode   = MODE_NUMBER;   // !!! MODE_VAR
+            new_data.number = num_value;
+            break;
+
+        case MODE_OPERATOR :
+            new_data.mode = MODE_OPERATOR;
+            new_data.oper = (char)num_value;
+            break;
+
+        case MODE_COMMAND :
+            new_data.mode = MODE_COMMAND;
+            new_data.com  = str_value;
+            break;
+
+        default:
+            printf("Error mode %d", mode);
+            abort();
     }
+
+    return new_data;
 }
 
 
 
-tree_elem* Create_TreeEquationHead(tree* tree_ak, char* buffer, size_t* i_sym)
+int Which_com(char* com_name)
 {
-    assert     (tree_ak);
-    assert     (buffer );
-    assert     (i_sym  );
+    #define DEF_COM(com, num, code) {if (!strcmp(com_name, #com)) return num;}
 
-    Create_Tree(tree_ak);
+    #include "commands.h"
 
-    (*i_sym) = Skip_Space(buffer, *i_sym);
-
-    data_t new_elem = Create_TreeEquationNewElem(buffer, i_sym);
-    tree_elem* pos = Add_TreeElem(tree_ak, new_elem, 'L', tree_ak->head);
-
-    assert     (tree_ak);
-    assert_tree(tree_ak);
-    assert     (buffer );
-    assert     (i_sym  );
-    assert     (pos    );
-
-    return pos;
+    #undef DEF_COM
 }
 
 
 
-data_t Create_TreeEquationNewElem(char* buffer, size_t* i_sym)
+tree_elem* Copy(tree_elem* pos)
 {
-    assert(buffer);
-    assert(i_sym );
+    assert(pos);
 
-    data_t new_elem = {};
+    tree_elem* copy_elem = (tree_elem*)calloc(1, sizeof(copy_elem[0]));
 
-    switch(Which_Elem(buffer, i_sym, &data))
+    if (pos->data.mode == MODE_COMMAND)
     {
-        case TYPE_NUMBER   : return nullptr;
-
-        case TYPE_VAR      : return nullptr;
-
-        case TYPE_OPERATOR
-        {
-            switch(data)
-            {
-                case '+' : ;
-                case '*' : ;
-            }
-        }
-
-        case TYPE_COMMAND :
-        {
-            switch(data)
-            {
-            }
-        }
-
-        default: fprintf(stderr, "Error Create_TreeDiffElem %zu", i_sym);
+        copy_elem->data.mode = pos->data.mode;
+        copy_elem->data.com  = strdup(pos->data.com);
     }
+
+    else
+        copy_elem->data = pos->data;
+
+    if(pos->right) copy_elem->right = cR;
+
+    if(pos->left)  copy_elem->left  = cL;
+
+    return copy_elem;
 }
 
 
 
-
-int Which_Elem(char* buffer, size_t* i_sym, data_t* new_data)
-{
-    assert(buffer);
-    assert(i_sym );
-
-    if(isdigit())
-
-
-
-inline size_t Skip_Space(char* buffer, size_t i_sym)
-{
-    assert(buffer);
-
-    while(buffer[i_sym] && (isgraph(buffer[i_sym]) == 0))
-        (i_sym)++;
-
-    assert(buffer);
-
-    return i_sym;
-}
-
-
-
-  /*while(buffer[*i_sym])
-    {
-        (*i_sym) = Skip_Space(buffer, *i_sym);
-
-        int data = 0;
-        switch(Which_Elem(buffer, i_sym, &data))
-        {
-            case TYPE_NUMBER   : return nullptr;
-
-            case TYPE_VAR      : return nullptr;
-
-            case TYPE_OPERATOR :
-            {
-                switch(data)
-                {
-                    case '+' : ;
-                    case '*' : ;
-                }
-            }
-
-            case TYPE_COMMAND :
-            {
-                switch(data)
-                {
-                }
-            }
-
-            default: fprintf(stderr, "Error Create_TreeDiffElem %zu", i_sym);
-        }
-    }*/

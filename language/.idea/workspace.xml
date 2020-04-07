@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="language" targetName="language" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="15f6ac1c-c30a-4ee1-b640-c8e6bde4ac0a" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectId" id="1UGAw5QPg9dlmxgC1sYVtFPVtbq" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="language" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="language" TARGET_NAME="language" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="language" RUN_TARGET_NAME="language">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="15f6ac1c-c30a-4ee1-b640-c8e6bde4ac0a" name="Default Changelist" comment="" />
+      <created>1574972793061</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1574972793061</updated>
+      <workItem from="1574972794596" duration="1028000" />
+      <workItem from="1575195749817" duration="3437000" />
+      <workItem from="1575453322800" duration="1703000" />
+      <workItem from="1575467196040" duration="120538000" />
+      <workItem from="1576367338268" duration="599000" />
+      <workItem from="1576402226689" duration="11658000" />
+      <workItem from="1576438289097" duration="934000" />
+      <workItem from="1576445373828" duration="25792000" />
+      <workItem from="1576535824304" duration="15606000" />
+      <workItem from="1576593190150" duration="27049000" />
+      <workItem from="1576690487913" duration="16457000" />
+      <workItem from="1576708389021" duration="1198000" />
+      <workItem from="1576761636291" duration="2032000" />
+      <workItem from="1576841061330" duration="558000" />
+      <workItem from="1583093142644" duration="599000" />
+      <workItem from="1583093857853" duration="3487000" />
+      <workItem from="1584317320799" duration="821000" />
+      <workItem from="1584395238585" duration="599000" />
+      <workItem from="1584988458615" duration="599000" />
+      <workItem from="1585073066088" duration="1620000" />
+      <workItem from="1585077806886" duration="1867000" />
+      <workItem from="1585325751032" duration="613000" />
+      <workItem from="1585571639880" duration="601000" />
+      <workItem from="1585998615595" duration="190000" />
+      <workItem from="1586252519787" duration="601000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/lang_front_end.cpp</url>
+          <line>14</line>
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/lang_front_end_back.cpp</url>
+          <line>13</line>
+          <option name="timeStamp" value="180" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="elem_E" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

@@ -129,7 +129,7 @@ void Destroy_TreeElems(tree_elem* pos)
 }
 
 
-/*void Print_PreorderTree(tree_elem* pos, FILE* tree_preorder)
+void Print_PreorderTree(tree_elem* pos, FILE* tree_preorder)
 {
     assert(tree_preorder);
     assert(pos);
@@ -149,12 +149,11 @@ void Destroy_TreeElems(tree_elem* pos)
     fprintf(tree_preorder, "}");
 
     assert(tree_preorder);
-}*/
+}
 
 
-/*void Print_InorderTree (tree_elem* pos, FILE* tree_inorder )
+void Print_InorderTree (tree_elem* pos, FILE* tree_inorder )
 {
-    {
     assert(tree_inorder);
     assert(pos);
 
@@ -169,10 +168,7 @@ void Destroy_TreeElems(tree_elem* pos)
     fprintf(tree_inorder, ")");
 
     assert(tree_inorder);
-}*/
-
-
-
+}
 
 
 #define OK(what, code) \
@@ -189,7 +185,7 @@ bool TreeOK(tree* tree_name)
 
     size_t i_size = 0;
     TreeElemsOK(tree_name->head, &i_size);
-    OK( i_size != tree_name->size,           SIZE_ERR);
+ //   OK( i_size != tree_name->size,           SIZE_ERR);
 
     return true;
 }

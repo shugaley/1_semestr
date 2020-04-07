@@ -1,10 +1,28 @@
-void Latex(tree* tree_name)
+#include "diff_header.h"
+
+
+void Latex(tree* tree_name, FILE* outtex)
 {
     assert(tree_name);
 
-    FILE* outtex = fopen(FILE_OUT_TEX, "wb");
+    Comment_Latex(outtex);
+
+    Print_Tree(tree_name->head, outtex);
+
+    fprintf(outtex, "\n");
+    fprintf(outtex, "\n");
+
+    assert(outtex);
+}
+
+
+void Latex_begin(FILE* outtex)
+{
+    assert(outtex);
 
     fprintf(outtex, "\\documentclass{article}\n"
+                    "\\usepackage[utf8]{inputenc}\n"
+                    "\\usepackage[russian]{babel}\n"
                     "\n"
                     "\\title{diff}\n"
                     "\n"
@@ -15,9 +33,13 @@ void Latex(tree* tree_name)
                     "\\maketitle\n"
                     "$");
 
-    Comment_Latex(outtex);
+    assert(outtex);
+}
 
-    Print_Tree(tree_name->head, outtex);
+
+void Latex_end(FILE* outtex)
+{
+    assert(outtex);
 
     fprintf(outtex, "$\n"
                     "\n"
@@ -26,6 +48,7 @@ void Latex(tree* tree_name)
     assert(outtex);
     fclose(outtex);
 }
+
 
 
 void Print_Tree(tree_elem* pos, FILE* out)
@@ -37,6 +60,7 @@ void Print_Tree(tree_elem* pos, FILE* out)
         {
             case '*':
                 Print_TreeMul(pos->left , out);
+                fprintf(out, "\\cdot{}");
                 Print_TreeMul(pos->right, out);
 
                 return;
@@ -132,9 +156,9 @@ void Comment_Latex(FILE* out)
     assert(out);
 
     const char* comment[5];
-    comment[0] = "Yasno:";
-    comment[1] = "Ponatno:";
-    comment[2] = "Otsyda sledyet:";
+    comment[0] = "Ясно:";
+    comment[1] = "Понятно:";
+    comment[2] = "Отсюда:";
     comment[3] = "Nyjno bolshe proizvodnax:";
     comment[4] = "Smotrite kak ymey:";
 
@@ -181,3 +205,15 @@ bool is_high_priority(tree_elem* pos)
     else
         return false;
 }
+
+
+
+
+
+
+
+
+
+
+
+

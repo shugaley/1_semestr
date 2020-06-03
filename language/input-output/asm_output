@@ -1,0 +1,53 @@
+push 0
+push ex
+push 0
+push [ex + 0]
+push 0
+push [ex + 1]
+in
+push [ex + 0]
+push 2
+pop [ex + 0]
+push 2
+push ex
+call f1
+push dx
+push 2
+pop dx
+sub
+push ex
+pop ax
+push [ex + 1]
+pop [ex + 1]
+out
+push 0
+push ax
+end
+f1:
+push [ex + 0]
+pop [ex + 0]
+push 1
+jbe else_if_0
+push 1
+push ax
+ret
+jmp end_if_0
+else_if_0:
+end_if_0:
+pop [ex + 0]
+push 1
+pop [ex + 0]
+push 1
+sub
+push 0
+push ex
+call f1
+push dx
+push 0
+pop dx
+sub
+push ex
+pop ax
+mul
+push ax
+ret

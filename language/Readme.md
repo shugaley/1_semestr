@@ -2,6 +2,6 @@
 
 ## Syntax
 
-`bam`
+* `bam`
 
 It 

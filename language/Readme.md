@@ -6,7 +6,7 @@ One day i thought that there are no belarussian program language. And I fixed th
 
 Input is .txt file which is written in my language. 
 
-* [Tokenization](https://github.com/shugaley/1_semestr/blob/master/language/lang_tokenization.cpp). - it splits my language on tokens:
+* [Tokenization](https://github.com/shugaley/1_semestr/blob/master/language/lang_tokenization.cpp) - splits my language on tokens:
 ```cpp
 enum MODE_TOKEN
 {
@@ -17,6 +17,16 @@ enum MODE_TOKEN
     MODE_TOKEN_ID   = 4,
 };
 ```
+
+* [Front_End](https://github.com/shugaley/1_semestr/blob/master/language/lang_tokenization.cpp) - makes the tree of my language. Example: 
+![](https://github.com/shugaley/1_semestr/blob/master/language/treefisrt.jpg)
+
+* [Middle_End](https://github.com/shugaley/1_semestr/blob/master/language/lang_middle_end.cpp) - simplifies my tree (
+arithmetic expressions and derivatives).
+
+* [Back_End](https://github.com/shugaley/1_semestr/blob/master/language/lang_back_end.cpp) - translate tree to my assembler for my [processsor](https://github.com/shugaley/1_semestr/tree/master/Processor "My own virtual processor")
+
+* [Front_End_Back](https://github.com/shugaley/1_semestr/blob/master/language/lang_tokenization.cpp) - translate different [standard](https://docs.google.com/document/d/1i-M6D6Sjlg4CRe6YHWInJ3B3d87_znxn3XpRUEa2Gos/edit "The tree standard of our group) tree to my language.
 
 ## Syntax
 

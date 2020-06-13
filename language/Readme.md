@@ -6,7 +6,7 @@ One day i thought that there are no belarussian program language. And I fixed th
 
 `бацька`⠀⠀⠀ -> main  
 `пасеяць`⠀⠀⠀-> int  
-`угнаенне`⠀⠀->⠀get  
+`угнаенне`⠀⠀-> get  
 `ураджай`⠀⠀⠀-> put  
   
 `калi`⠀⠀⠀⠀⠀ -> if  
@@ -14,7 +14,7 @@ One day i thought that there are no belarussian program language. And I fixed th
 `пакуль`⠀⠀⠀⠀-> while
 
 `гэта`⠀⠀⠀⠀⠀⠀ ->⠀=  
-`разам з`⠀⠀⠀  -> +  
+`разам з`⠀⠀⠀⠀  -> +  
 `без`⠀⠀⠀⠀⠀⠀ ⠀->⠀-  
 `прапалоць`⠀⠀⠀-> *  
 `скасiць`⠀⠀⠀ ⠀-> \  

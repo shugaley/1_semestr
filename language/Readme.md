@@ -4,9 +4,20 @@ One day i thought that there are no belarussian program language. And I fixed th
 
 ## Description
 
-Input is .txt file which is written in my language (there are examples of [programs] [id]) 
+Input is .txt file which is written in my language. 
 
-[optimization](https://github.com/shugaley/2_semestr/blob/master/compiler/Readme(optimization).md "Подсказка").
+* [Tokenization](https://github.com/shugaley/1_semestr/blob/master/language/lang_tokenization.cpp).  
+- it splits my language on tokens.
+```cpp
+enum MODE_TOKEN
+{
+    MODE_TOKEN_END  = 0,
+    MODE_TOKEN_NUM  = 1,
+    MODE_TOKEN_OP   = 2,
+    MODE_TOKEN_PUNC = 3,
+    MODE_TOKEN_ID   = 4,
+};
+```
 
 ## Syntax
 
@@ -30,5 +41,3 @@ Input is .txt file which is written in my language (there are examples of [progr
 `меньш чым`⠀⠀⠀⠀⠀⠀-> <  
 `больш-равно чым`⠀⠀-> >=  
 `меньш-равно чым`⠀⠀-> <=  
-
-[id] fgfdhg

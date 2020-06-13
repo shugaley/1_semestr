@@ -13,9 +13,9 @@ One day i thought that there are no belarussian program language. And I fixed th
 `iнакш`⠀⠀⠀⠀⠀-> else  
 `пакуль`⠀⠀⠀⠀-> while
 
-`гэта`⠀⠀⠀⠀⠀⠀ ->⠀ =  
+`гэта`⠀⠀⠀⠀⠀⠀ ->⠀=  
 `разам з`⠀⠀⠀⠀  -> +  
-`без`⠀⠀⠀⠀⠀⠀ ⠀->⠀ -  
+`без`⠀⠀⠀⠀⠀⠀ ⠀->⠀-  
 `прапалоць`⠀⠀⠀->⠀*  
 `скасiць`⠀⠀⠀ ⠀->⠀\  
   

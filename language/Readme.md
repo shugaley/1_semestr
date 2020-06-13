@@ -26,7 +26,7 @@ arithmetic expressions and derivatives).
 
 * [Back_End](https://github.com/shugaley/1_semestr/blob/master/language/lang_back_end.cpp) - translate tree to my assembler for my [processsor](https://github.com/shugaley/1_semestr/tree/master/Processor "My own virtual processor")
 
-* [Front_End_Back](https://github.com/shugaley/1_semestr/blob/master/language/lang_tokenization.cpp) - translate different [standard](https://docs.google.com/document/d/1i-M6D6Sjlg4CRe6YHWInJ3B3d87_znxn3XpRUEa2Gos/edit "The tree standard of our group) tree to my language.
+* [Front_End_Back](https://github.com/shugaley/1_semestr/blob/master/language/lang_tokenization.cpp) - translate different  [standard](https://docs.google.com/document/d/1i-M6D6Sjlg4CRe6YHWInJ3B3d87_znxn3XpRUEa2Gos/edit "The tree standard of our group") tree to my language.
 
 ## Syntax
 

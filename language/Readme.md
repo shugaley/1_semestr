@@ -60,4 +60,4 @@ There are examples of programs that are written in my language:
 * [Square](https://github.com/shugaley/1_semestr/blob/master/language/input-output/lang_input_square) - solves square equation.
 
 
-* [Factorial](https://github.com/shugaley/1_semestr/blob/master/language/input-output/lang_input_fact) - considers factorial.
+* [Factorial](https://github.com/shugaley/1_semestr/blob/master/language/input-output/lang_input_fact) - counts factorial.

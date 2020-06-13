@@ -6,8 +6,7 @@ One day i thought that there are no belarussian program language. And I fixed th
 
 Input is .txt file which is written in my language. 
 
-* [Tokenization](https://github.com/shugaley/1_semestr/blob/master/language/lang_tokenization.cpp).  
-   - it splits my language on tokens.
+* [Tokenization](https://github.com/shugaley/1_semestr/blob/master/language/lang_tokenization.cpp). - it splits my language on tokens:
 ```cpp
 enum MODE_TOKEN
 {

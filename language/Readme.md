@@ -9,9 +9,9 @@ One day i thought that there are no belarussian program language. And I fixed th
 `угнаенне`⠀⠀->⠀get  
 `ураджай`⠀⠀⠀-> put  
   
-`калi`⠀⠀⠀ -> if  
-`iнакш`⠀⠀⠀-> else  
-`пакуль`⠀⠀->⠀while
+`калi`⠀⠀⠀⠀⠀ -> if  
+`iнакш`⠀⠀⠀⠀⠀-> else  
+`пакуль`⠀⠀⠀⠀-> while
 
 `гэта`⠀⠀⠀⠀⠀⠀ ->⠀=  
 `разам з`⠀⠀⠀⠀ -> +  

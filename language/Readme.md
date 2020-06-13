@@ -2,6 +2,12 @@
 
 One day i thought that there are no belarussian program language. And I fixed this problem.  
 
+## Description
+
+Input is .txt file which is written in my language (there are examples of [programs] [id]) 
+
+[optimization](https://github.com/shugaley/2_semestr/blob/master/compiler/Readme(optimization).md "Подсказка").
+
 ## Syntax
 
 `бацька`⠀⠀⠀ -> main  
@@ -25,3 +31,4 @@ One day i thought that there are no belarussian program language. And I fixed th
 `больш-равно чым`⠀⠀-> >=  
 `меньш-равно чым`⠀⠀-> <=  
 
+[id] fgfdhg

@@ -21,8 +21,7 @@ enum MODE_TOKEN
 * [Front_End](https://github.com/shugaley/1_semestr/blob/master/language/lang_tokenization.cpp) - makes the tree of my language. There are my [tree library](https://github.com/shugaley/1_semestr/tree/master/akinator/tree "My own tree library"). Example: 
 ![](https://github.com/shugaley/1_semestr/blob/master/language/treefisrt.jpg)
 
-* [Middle_End](https://github.com/shugaley/1_semestr/blob/master/language/lang_middle_end.cpp) - simplifies my tree (
-arithmetic expressions and derivatives).
+* [Middle_End](https://github.com/shugaley/1_semestr/blob/master/language/lang_middle_end.cpp) - simplifies my tree (arithmetic expressions and [derivatives](https://github.com/shugaley/1_semestr/tree/master/differentiator "My own derivation calculator")).
 
 * [Back_End](https://github.com/shugaley/1_semestr/blob/master/language/lang_back_end.cpp) - translate tree to my assembler for my [processsor](https://github.com/shugaley/1_semestr/tree/master/Processor "My own virtual processor") (.txt output file).
 
